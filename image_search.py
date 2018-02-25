@@ -20,8 +20,9 @@ def upload_search():
     with tempfile.NamedTemporaryFile() as tmp:
         tmp.write(request.files["image"].read())
         image = imageio.imread(tmp.name)
+        result = search_engine.search(image)
 
-    return jsonify(status="OK")
+    return jsonify(result=result)
 
 
 if __name__ == "__main__":

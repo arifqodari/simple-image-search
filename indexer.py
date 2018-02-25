@@ -26,20 +26,26 @@ def nn_index(num_features=288, n_trees=10):
     image_files = get_image_files()
 
     # init annoy index
-    ann_index = AnnoyIndex(num_features)
+    ann_index = AnnoyIndex(96)
 
     for i, image_file in enumerate(image_files):
         print(i + 1, len(image_files))
 
         # load image
+        image = imageio.imread(image_file)
 
         # extract features
+        features = color_histogram(image)
 
         # add features into annoy index
+        ann_index.add_item(i, features)
 
     # perform indexing
+    ann_index.build(2)
 
     # save the resulting index into a bin file
+    pickle.dump(image_files, open("image_files.bin", "wb"))
+    ann_index.save("index.ann")
 
 
 if __name__ == "__main__":
