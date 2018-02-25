@@ -10,9 +10,13 @@ An implementation of a simple image search engine in Python.
 
 ## Installation
 
+Install the required packages:
 ```
 pip install -r requirements.txt
 ```
+
+Download sample images from [here](http://bitly.com/holiday-small).
+Extract the zip file and put the `images` folder in `static` folder.
 
 ## Usage
 
